@@ -54,7 +54,7 @@ public class MovePlayer : MonoBehaviour
     }
     IEnumerator wait(GameObject g, bool Stay = true, int scene = 2)
     {
-        gameManager.sBfadeIn(.4f);
+        gameManager.BfadeIn(.4f);
         yield return new WaitForSeconds(.6f);
         Destroy(g);
         if (Stay)

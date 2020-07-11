@@ -5,16 +5,25 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float drag;
 
-    // Update is called once per frame
-    void Update()
+    private Rigidbody2D moveRb;
+
+
+    private void Start()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += move * Time.deltaTime * moveSpeed;
+        moveRb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 vel = moveRb.velocity;
+        vel.x += Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+        vel.x *= drag;
+        moveRb.velocity = vel;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("dd");
         if (collision.gameObject.tag == "Enemy")
         {
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);

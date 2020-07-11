@@ -25,32 +25,46 @@ public class MovePlayer : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
-            StartCoroutine(wait(gameObject));
+            StartCoroutine(wait(gameObject,false));
         }
         else if (collision.gameObject.tag == "Start")
         {
-            gameManager.BfadeIn(.4f);
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
             LeanTween.rotateAround(gameObject, Vector3.forward, -360f, .6f);
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
-            StartCoroutine(wait(gameObject, true, 0));
+            StartCoroutine(wait(gameObject, true));
         }
         else if (collision.gameObject.tag == "Base")
         {
-            gameManager.BfadeIn(.4f);
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
             LeanTween.rotateAround(gameObject, Vector3.forward, 360f, .6f);
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(-2f, 1f, 0f), .6f);
             StartCoroutine(wait(gameObject, true, 1));
         }
+        else if (collision.gameObject.tag == "Spawn")
+        {
+            LeanTween.move(gameObject, gameObject.transform.position + new Vector3(1, 0f, 0), .5f);
+        }
     }
     IEnumerator wait(GameObject g, bool Stay = true, int scene = 2)
     {
+        gameManager.BfadeIn(.4f);
         yield return new WaitForSeconds(.6f);
         Destroy(g);
-        if (!Stay)
+        if (Stay)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + scene);
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + scene);
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -scene + 1);
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

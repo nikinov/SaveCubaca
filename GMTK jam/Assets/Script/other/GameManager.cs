@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject Player;
-    void Start()
+    public CanvasGroup blackPanel;
+    public void BfadeIn(float time)
     {
-        LeanTween.scale(Player, new Vector3(0.135f, 0.135f), 1.35f).setEase(LeanTweenType.easeOutBounce);
+        LeanTween.alphaCanvas(blackPanel, 1f, time);
+    }
+    public void BfadeOut(float time)
+    {
+        LeanTween.alphaCanvas(blackPanel, 0f, time);
     }
 }

@@ -25,6 +25,7 @@ public class camZoom : MonoBehaviour
             }
             else
             {
+                cam.orthographicSize = 2;
                 zoom = 0;
                 StartCoroutine(wait(.5f));
             }
@@ -38,6 +39,8 @@ public class camZoom : MonoBehaviour
             }
             else
             {
+                this.transform.position = new Vector3(0, 0, -10);
+                cam.orthographicSize = 5;
                 zoom = 0;
             }
         }

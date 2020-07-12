@@ -21,15 +21,6 @@ public class lightindi : MonoBehaviour
     }
     IEnumerator wait()
     {
-        foreach (Transform l in jLights)
-        {
-            colchange(l);
-        }
-        yield return new WaitForSeconds(.1f);
-        foreach (Transform l in jLights)
-        {
-            colchange(l, 0, 0, 0, 0);
-        }
         yield return new WaitForSeconds(.3f);
         foreach (Transform l in jLights)
         {

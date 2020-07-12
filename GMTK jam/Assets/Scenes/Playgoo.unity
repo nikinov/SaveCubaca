@@ -3374,12 +3374,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &476063418 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 5311984766109733661, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849172369}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &481296132
 GameObject:
   m_ObjectHideFlags: 0
@@ -11608,6 +11602,7 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1706743029}
+<<<<<<< HEAD
     - target: {fileID: 5311984766109733651, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
       propertyPath: ObjectChange
@@ -11648,6 +11643,8 @@ PrefabInstance:
       propertyPath: Teleport.z
       value: 10.26
       objectReference: {fileID: 0}
+=======
+>>>>>>> e4f973b04123b0e0887c221d15a4fa8b4e3ac806
     - target: {fileID: 5311984766109733656, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
       propertyPath: m_Name

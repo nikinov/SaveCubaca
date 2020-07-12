@@ -51,18 +51,21 @@ public class LogoManager : MonoBehaviour
             Mission0.text = misss0 + "|";
             yield return new WaitForSeconds(.1f);
         }
+        Mission0.text = misss0;
         foreach (char st in miss1)
         {
             misss1 += st;
             Mission1.text = misss1 + "|";
             yield return new WaitForSeconds(.1f);
         }
+        Mission1.text = misss1;
         foreach (char st in miss2)
         {
             misss2 += st;
             Mission2.text = misss2 + "|";
             yield return new WaitForSeconds(.1f);
         }
+        Mission2.text = misss2;
         LeanTween.alphaCanvas(BlackPanel, 1, 1);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneBuildIndex: 2);

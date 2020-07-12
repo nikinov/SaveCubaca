@@ -6,23 +6,20 @@ using UnityEngine.SceneManagement;
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float drag;
     public GameManager gameManager;
     public Rigidbody2D rb;
-
-    private Rigidbody2D moveRb;
 
     private void Start()
     {
         LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
         LeanTween.rotateAround(gameObject, Vector3.forward, -720f, 1f);
         LeanTween.move(gameObject, gameObject.transform.position + new Vector3(3.5f, -1f, 0f), 1f);
-        gameManager?.BfadeOut(.7f);
-        moveRb = GetComponent<Rigidbody2D>();
+        gameManager.BfadeOut(.7f);
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal"),0) * moveSpeed;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += move * Time.deltaTime * moveSpeed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

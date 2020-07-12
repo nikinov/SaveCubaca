@@ -3,28 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MovePlayer : MonoBehaviour
+public class MovePlayerr : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float drag;
     public GameManager gameManager;
-
-    private Rigidbody2D moveRb;
-
     private void Start()
     {
         LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
         LeanTween.rotateAround(gameObject, Vector3.forward, -720f, 1f);
         LeanTween.move(gameObject, gameObject.transform.position + new Vector3(3.5f, -1f, 0f), 1f);
         gameManager.BfadeOut(.7f);
-        moveRb = GetComponent<Rigidbody2D>();
     }
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Vector2 vel = moveRb.velocity;
-        vel.x += Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-        vel.x *= drag;
-        moveRb.velocity = vel;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += move * Time.deltaTime * moveSpeed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

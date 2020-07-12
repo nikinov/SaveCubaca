@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3751e4b60f8e7477e8ba84be07606ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
+  moveSpeed: 7
   drag: 1
   gameManager: {fileID: 1625420999}
   Teleport: {x: -6, y: 4, z: 0}

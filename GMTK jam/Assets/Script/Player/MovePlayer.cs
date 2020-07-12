@@ -52,14 +52,22 @@ public class MovePlayer : MonoBehaviour
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
             StartCoroutine(wait(gameObject, 3, 2));
         }
+        else if (collision.gameObject.tag == "Friendly")
+        {
+            LeanTween.scale(collision.gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
+            StartCoroutine(wait(collision.gameObject, 4, 4, false));
+        }
         else if (collision.gameObject.tag == "Spawn")
         {
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(1, 0f, 0), .5f);
         }
     }
-    IEnumerator wait(GameObject g, int Stay = 4, int scene = 2)
+    IEnumerator wait(GameObject g, int Stay = 4, int scene = 2, bool a=true)
     {
-        gameManager?.BfadeIn(.4f);
+        if(a)
+        {
+            gameManager?.BfadeIn(.4f);
+        }
         yield return new WaitForSeconds(.6f);
         Destroy(g);
         if (Stay == 1)
@@ -73,6 +81,14 @@ public class MovePlayer : MonoBehaviour
         else if (Stay == 3)
         {
             SceneManager.LoadScene(sceneBuildIndex: scene);
+        }
+        else if (Stay == 4)
+        {
+            LeanTween.scale(gameObject, new Vector3(0f, 0f), 1f).setEase(LeanTweenType.easeOutBounce);
+            yield return new WaitForSeconds(1);
+            transform.position = new Vector3(7.81f, 2.51f, -3.654236f);
+            LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
+            yield return new WaitForSeconds(1);
         }
         else
         {

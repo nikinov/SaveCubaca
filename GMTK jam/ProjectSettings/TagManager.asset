@@ -9,6 +9,8 @@ TagManager:
   - Base
   - Spawn
   - Hallway
+  - Friendly
+  - Change
   layers:
   - Default
   - TransparentFX

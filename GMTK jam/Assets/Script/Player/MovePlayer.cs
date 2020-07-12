@@ -9,6 +9,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float drag;
     public GameManager gameManager;
+    public Vector3 Teleport;
 
     private Rigidbody2D moveRb;
 
@@ -65,6 +66,10 @@ public class MovePlayer : MonoBehaviour
         {
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(1, 0f, 0), .5f);
         }
+        else
+        {
+
+        }
     }
     IEnumerator wait(GameObject g, int Stay = 4, int scene = 2, bool a=true)
     {
@@ -90,8 +95,8 @@ public class MovePlayer : MonoBehaviour
         {
             LeanTween.scale(gameObject, new Vector3(0f, 0f), 1f).setEase(LeanTweenType.easeOutBounce);
             yield return new WaitForSeconds(1);
-            transform.position = new Vector3(7.81f, 2.51f, -3.654236f);
-            LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
+            transform.position = Teleport;
+            LeanTween.scale(gameObject, new Vector3(.17f, .17f), 1f).setEase(LeanTweenType.easeOutBounce);
             yield return new WaitForSeconds(1);
         }
         else

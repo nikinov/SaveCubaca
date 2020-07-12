@@ -15,7 +15,7 @@ public class cammove : MonoBehaviour
         }
         else if (Player.position.x + 3 < this.transform.position.x)
         {
-            if (Player.position.x > 6)
+            if (Player.position.x > -3)
             {
                 this.transform.position = new Vector3(this.transform.position.x + Time.deltaTime * -5, 0, -10);
             }

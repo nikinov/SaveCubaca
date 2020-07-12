@@ -11,6 +11,7 @@ TagManager:
   - Hallway
   - Friendly
   - Change
+  - Dis
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class BeatJumper : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpDecrier;
     [SerializeField] private float startingTimer;
+    public List<lightindi> lit;
     
 
     public float JumpTimer { get => jumpTimer; }
@@ -21,6 +22,7 @@ public class BeatJumper : MonoBehaviour
     {
         moveRb = GetComponent<Rigidbody2D>();
         jumpTimer = startingTimer;
+
     }
 
     private void FixedUpdate()
@@ -33,8 +35,6 @@ public class BeatJumper : MonoBehaviour
             vel.y *= jumpDecrier;
             moveRb.velocity = vel;
         }
-        
-
         if(jumpTimer <= 0)
         {
             Jump();
@@ -44,6 +44,15 @@ public class BeatJumper : MonoBehaviour
 
     private void Jump()
     {
+        StartCoroutine(wait());
+    }
+    IEnumerator wait()
+    {
+        foreach (lightindi l in lit)
+        {
+            l.lightUp();
+        }
+        yield return new WaitForSeconds(.9f);
         moveRb.velocity += Vector2.up * jumpForce;
     }
 }

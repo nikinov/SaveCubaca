@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class lightindi : MonoBehaviour
 {
-    [SerializeField] private List<Transform> jLights;
+    public List<Transform> jLights;
 
     private void Start()
     {
@@ -13,9 +13,8 @@ public class lightindi : MonoBehaviour
         {
             colchange(l, 0, 0, 0, 0);
         }
-        lightUp();
     }
-    void lightUp()
+    public void lightUp()
     {
         StartCoroutine(wait());
     }

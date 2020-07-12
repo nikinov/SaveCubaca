@@ -21,10 +21,7 @@ public class MovePlayer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector2 vel = moveRb.velocity;
-        vel.x += Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-        vel.x *= drag;
-        moveRb.velocity = vel;
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

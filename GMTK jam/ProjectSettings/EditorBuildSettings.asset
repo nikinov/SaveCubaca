@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Base.unity
     guid: e3fb02d279eb84828939050496bc190b
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2416b4db9f53644b2a89d414209a49c8
+    path: Assets/Scenes/menu.unity
+    guid: a2b041c57c45ef0488614f2ba1cb659a
   - enabled: 1
     path: Assets/Scenes/Playgoo.unity
     guid: 62bb30e32b5ab4cc4afc29c823ca6d50

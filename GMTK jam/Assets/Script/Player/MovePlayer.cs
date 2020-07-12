@@ -8,6 +8,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float drag;
     public GameManager gameManager;
+    public Rigidbody2D rb;
 
     private Rigidbody2D moveRb;
 
@@ -21,7 +22,7 @@ public class MovePlayer : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal"),0) * moveSpeed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

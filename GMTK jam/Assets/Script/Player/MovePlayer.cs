@@ -26,7 +26,7 @@ public class MovePlayer : MonoBehaviour
         Vector2 vel = moveRb.velocity;
         vel.x += horMove;
         vel.x *= drag;
-
+        moveRb.velocity = vel;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

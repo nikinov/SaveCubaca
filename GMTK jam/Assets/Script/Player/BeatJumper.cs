@@ -126,15 +126,5 @@ public class BeatJumper : MonoBehaviour
             isLanded = false;
         }
 
-        
-    }
-
-    private Vector3 GlobalToLocalScale(Vector3 globalScale)
-    {
-        Vector3 initalScale = transform.localScale;
-        transform.localScale = Vector3.one;
-        Vector3 localScale = new Vector3(globalScale.x / transform.lossyScale.x, globalScale.y / transform.lossyScale.y, globalScale.z / transform.lossyScale.z);
-        transform.localScale = initalScale;
-        return localScale;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MovePlayerr : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    public GameManager gameManager;
+    public GameManager2 gameManager;
     private void Start()
     {
         LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);

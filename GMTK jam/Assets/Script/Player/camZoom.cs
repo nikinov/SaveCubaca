@@ -9,7 +9,7 @@ public class camZoom : MonoBehaviour
     private int zoom;
     [SerializeField] private float corner0;
     [SerializeField] private float corner1;
-    private void Start()
+    private void Awake()
     {
         cam = Camera.main;
         zoom = 1;

@@ -70,12 +70,17 @@ public class MovePlayer : MonoBehaviour
         {
             LeanTween.move(gameObject, gameObject.transform.position + new Vector3(1, 0f, 0), .5f);
         }
+        else if (collision.gameObject.tag == "Dis")
+        {
+            LeanTween.scale(collision.gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
+            wait(collision.gameObject);
+        }
         else
         {
 
         }
     }
-    IEnumerator wait(GameObject g, int Stay = 4, int scene = 2, bool a=true)
+    IEnumerator wait(GameObject g, int Stay = 5, int scene = 2, bool a=true)
     {
         if(a)
         {

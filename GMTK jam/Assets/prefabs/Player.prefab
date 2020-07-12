@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 30
-  drag: 0.9
   gameManager: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!61 &5311984766109733660
 BoxCollider2D:
   m_ObjectHideFlags: 0

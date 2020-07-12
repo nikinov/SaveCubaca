@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float drag;
     public GameManager gameManager;
+
+    private Rigidbody2D moveRb;
 
     private void Start()
     {
@@ -14,11 +18,15 @@ public class MovePlayer : MonoBehaviour
         LeanTween.rotateAround(gameObject, Vector3.forward, -720f, 1f);
         LeanTween.move(gameObject, gameObject.transform.position + new Vector3(3f, -1f, 0f), 1f);
         gameManager.BfadeOut(.7f);
+        moveRb = GetComponent<Rigidbody2D>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        //transform.position += move * Time.deltaTime * moveSpeed;
+        float horMove = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+        Vector2 vel = moveRb.velocity;
+        vel.x += horMove;
+        vel.x *= drag;
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

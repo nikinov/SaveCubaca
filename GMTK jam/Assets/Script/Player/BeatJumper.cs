@@ -8,8 +8,11 @@ public class BeatJumper : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpDecrier;
     [SerializeField] private float startingTimer;
+    
 
     public float JumpTimer { get => jumpTimer; }
+    public float JumpTimerAnalog { get => jumpTimer/jumpFrequency; }
+    public float JumpFrequency { get => jumpFrequency; }
 
     private float jumpTimer;
     private Rigidbody2D moveRb;

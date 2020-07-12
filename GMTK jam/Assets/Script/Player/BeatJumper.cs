@@ -62,14 +62,18 @@ public class BeatJumper : MonoBehaviour
             jumpTimer = jumpFrequency;
         }
 
-        if(!isLanded && Mathf.Abs(moveRb.velocity.magnitude) > 1f)
+        if(jumpTrail != null)
         {
-            jumpTrail.emitting = true;
+            if (!isLanded && Mathf.Abs(moveRb.velocity.magnitude) > 1f)
+            {
+                jumpTrail.emitting = true;
+            }
+            else
+            {
+                jumpTrail.emitting = false;
+            }
         }
-        else
-        {
-            jumpTrail.emitting = false;
-        }
+        
         
     }
 
@@ -77,8 +81,12 @@ public class BeatJumper : MonoBehaviour
     {
         moveRb.velocity += Vector2.up * jumpForce;
         isLanded = false;
-        jumpEffect.transform.up = Vector2.up;
-        jumpEffect.Play();
+        if(jumpEffect != null)
+        {
+            jumpEffect.transform.up = Vector2.up;
+            jumpEffect.Play();
+        }
+        
 
         /*Vector2 squsheScale = transform.localScale;
         squsheScale.x /= 1.15f;
@@ -103,8 +111,12 @@ public class BeatJumper : MonoBehaviour
         if (hit && hit.distance<.382f) {
             if (!isLanded)
             {
-                landEffect.transform.up = Vector2.up;
-                landEffect.Play();
+                if(landEffect != null)
+                {
+                    landEffect.transform.up = Vector2.up;
+                    landEffect.Play();
+                }
+                
 
                 /*Vector2 squsheScale = transform.localScale;
                 squsheScale.x *= 1.15f;

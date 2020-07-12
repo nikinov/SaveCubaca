@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class MovePlayerr : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+
+    [SerializeField] private AudioClip hitSpike;
+    [SerializeField] private AudioSource source;
+
     public GameManager2 gameManager;
     private void Start()
     {
@@ -26,6 +30,7 @@ public class MovePlayerr : MonoBehaviour
         {
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
             StartCoroutine(wait(gameObject,2));
+            source.PlayOneShot(hitSpike);
         }
         else if (collision.gameObject.tag == "Start")
         {

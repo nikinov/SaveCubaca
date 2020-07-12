@@ -259,11 +259,6 @@ PrefabInstance:
       propertyPath: startingTimer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5311984766109733651, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
-        type: 3}
-      propertyPath: drag
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 5311984766109733656, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
       propertyPath: m_Name

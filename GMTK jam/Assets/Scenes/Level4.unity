@@ -10961,6 +10961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: go (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6950323755568060998, guid: 1c3d854d59c36480d8db8203e5c5b33b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Base
+      objectReference: {fileID: 0}
     - target: {fileID: 6950323755568061003, guid: 1c3d854d59c36480d8db8203e5c5b33b,
         type: 3}
       propertyPath: m_LocalPosition.x

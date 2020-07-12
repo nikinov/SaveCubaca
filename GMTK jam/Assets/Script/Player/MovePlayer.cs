@@ -17,8 +17,8 @@ public class MovePlayer : MonoBehaviour
     }
     private void Update()
     {
-        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        //transform.position += move * Time.deltaTime * moveSpeed;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += move * Time.deltaTime * moveSpeed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

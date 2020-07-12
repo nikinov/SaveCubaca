@@ -1154,6 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  drag: 0
   gameManager: {fileID: 1706743029}
 --- !u!1 &162101220
 GameObject:

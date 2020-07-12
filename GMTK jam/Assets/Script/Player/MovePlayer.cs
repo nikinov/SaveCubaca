@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
         LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
         LeanTween.rotateAround(gameObject, Vector3.forward, -720f, 1f);
         LeanTween.move(gameObject, gameObject.transform.position + new Vector3(3f, -1f, 0f), 1f);
-        gameManager.BfadeOut(.7f);
+        gameManager?.BfadeOut(.7f);
         moveRb = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()

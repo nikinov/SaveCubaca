@@ -52,7 +52,7 @@ public class BeatJumper : MonoBehaviour
         {
             l.lightUp();
         }
-        yield return new WaitForSeconds(.9f);
+        yield return new WaitForSeconds(.6f);
         moveRb.velocity += Vector2.up * jumpForce;
     }
 }

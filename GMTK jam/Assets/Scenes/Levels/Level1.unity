@@ -127,42 +127,102 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1339802459}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &815105853 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5311984766109733650, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1339802459}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815105852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68cf40cb947277f48b073252f7e5b261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!212 &815105857 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5311984766109733663, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1339802459}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &815105859
-MonoBehaviour:
+--- !u!82 &815105861
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815105852}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274e0ce5cae4d4941a02f9275fb4dbcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sp: {fileID: 815105857}
-  jumpColor: {r: 0.8915094, g: 0.9288031, b: 1, a: 1}
-  atentionColor: {r: 0.2627451, g: 0.43529412, b: 0.7647059, a: 1}
-  jumper: {fileID: 815105853}
-  atentionTime: 0.5
-  jumpTime: 0.2
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1327458683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,24 +301,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5311984766109733650, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
-      propertyPath: jumpFrequency
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 815105861}
     - target: {fileID: 5311984766109733650, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
-      propertyPath: jumpDecrier
-      value: 1.1
-      objectReference: {fileID: 0}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0545c30141718a642801b0cacf2d30da, type: 3}
     - target: {fileID: 5311984766109733650, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
-      propertyPath: jumpForce
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5311984766109733650, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
-        type: 3}
-      propertyPath: startingTimer
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: lendSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ff0b0cfbdc6a69409384be5cdba5741, type: 3}
     - target: {fileID: 5311984766109733656, guid: 9e79a71bd9c17fc45b7f8ac2aaa7885c,
         type: 3}
       propertyPath: m_Name

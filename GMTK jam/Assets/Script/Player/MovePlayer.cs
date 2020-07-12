@@ -11,6 +11,9 @@ public class MovePlayer : MonoBehaviour
     public GameManager gameManager;
     public Vector3 Teleport;
 
+    [SerializeField] private AudioClip hitSpike;
+    [SerializeField] private AudioSource source;
+
     private Rigidbody2D moveRb;
 
     private void Start()
@@ -35,6 +38,7 @@ public class MovePlayer : MonoBehaviour
         {
             LeanTween.scale(gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
             StartCoroutine(wait(gameObject,2));
+            source.PlayOneShot(hitSpike);
         }
         else if (collision.gameObject.tag == "Start")
         {

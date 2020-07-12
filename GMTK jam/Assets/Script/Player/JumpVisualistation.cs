@@ -10,6 +10,7 @@ public class JumpVisualistation : MonoBehaviour
     [SerializeField] private BeatJumper jumper;
     [SerializeField] private float atentionTime;
     [SerializeField] private float jumpTime;
+    
 
     private AtentionStage atention;
     private Color defaultColor;

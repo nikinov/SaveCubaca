@@ -9,6 +9,15 @@ public class BeatJumper : MonoBehaviour
     [SerializeField] private float jumpDecrier;
     [SerializeField] private float startingTimer;
     public List<lightindi> lit;
+    [SerializeField] private ParticleSystem jumpEffect;
+    [SerializeField] private ParticleSystem landEffect;
+    [SerializeField] private TrailRenderer jumpTrail;
+
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip lendSound;
+    [SerializeField] private AudioSource source;
+
+    [SerializeField] private LayerMask groundMask;
     
 
     public float JumpTimer { get => jumpTimer; }
@@ -17,12 +26,13 @@ public class BeatJumper : MonoBehaviour
 
     private float jumpTimer;
     private Rigidbody2D moveRb;
+    private bool isLanded;
 
     private void Start()
     {
         moveRb = GetComponent<Rigidbody2D>();
         jumpTimer = startingTimer;
-
+        isLanded = true;
     }
 
     private void FixedUpdate()
@@ -35,24 +45,96 @@ public class BeatJumper : MonoBehaviour
             vel.y *= jumpDecrier;
             moveRb.velocity = vel;
         }
-        if(jumpTimer <= 0)
+
+        if (jumpTimer <= .1f)
+        {
+            foreach (lightindi l in lit)
+            {
+                l.lightUp();
+            }
+        }
+
+        IsLanded();
+
+        if (jumpTimer <= 0)
         {
             Jump();
             jumpTimer = jumpFrequency;
         }
+
+        if(!isLanded && Mathf.Abs(moveRb.velocity.magnitude) > 1f)
+        {
+            jumpTrail.emitting = true;
+        }
+        else
+        {
+            jumpTrail.emitting = false;
+        }
+        
     }
 
     private void Jump()
     {
-        StartCoroutine(wait());
-    }
-    IEnumerator wait()
-    {
-        foreach (lightindi l in lit)
-        {
-            l.lightUp();
-        }
-        yield return new WaitForSeconds(.9f);
         moveRb.velocity += Vector2.up * jumpForce;
+        isLanded = false;
+        jumpEffect.transform.up = Vector2.up;
+        jumpEffect.Play();
+
+        /*Vector2 squsheScale = transform.localScale;
+        squsheScale.x /= 1.15f;
+        squsheScale.y *= 1.15f;
+        Vector3 globalScale = new Vector3();
+        globalScale.x = transform.right.x * squsheScale.x + transform.up.x * squsheScale.y;
+        globalScale.y = transform.right.y * squsheScale.x + transform.up.y * squsheScale.y;
+
+        var seq = LeanTween.sequence();
+        seq.append(LeanTween.scale(gameObject, squsheScale, .4f));
+        seq.append(LeanTween.scale(gameObject, transform.localScale, .2f));*/
+
+
+        source.PlayOneShot(jumpSound);
+    }
+    
+    private void IsLanded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, groundMask);
+        if(hit)
+            Debug.Log(hit.collider.gameObject.name + " dst = " + hit.distance);
+        if (hit && hit.distance<.382f) {
+            if (!isLanded)
+            {
+                landEffect.transform.up = Vector2.up;
+                landEffect.Play();
+
+                /*Vector2 squsheScale = transform.localScale;
+                squsheScale.x *= 1.15f;
+                squsheScale.y /= 1.15f;
+                Vector3 globalScale = Vector3.one;
+                globalScale.x = transform.right.x * squsheScale.x + transform.up.x * squsheScale.y;
+                globalScale.y = transform.right.y * squsheScale.x + transform.up.y * squsheScale.y;
+
+                var seq = LeanTween.sequence();
+                seq.append(LeanTween.scale(gameObject, squsheScale, .4f));
+                seq.append(LeanTween.scale(gameObject, transform.localScale, .2f));*/
+
+                source.PlayOneShot(lendSound);
+            }
+            isLanded = true;
+        }
+        else
+        {
+            isLanded = false;
+        }
+
+        
+    }
+
+    private Vector3 GlobalToLocalScale(Vector3 globalScale)
+    {
+        Vector3 initalScale = transform.localScale;
+        transform.localScale = Vector3.one;
+        Vector3 localScale = new Vector3(globalScale.x / transform.lossyScale.x, globalScale.y / transform.lossyScale.y, globalScale.z / transform.lossyScale.z);
+        transform.localScale = initalScale;
+        return localScale;
     }
 }

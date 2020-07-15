@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,51 +22,68 @@ public class GameManager : MonoBehaviour
     bool inside;
     public void BfadeIn(float time)
     {
-        LeanTween.alphaCanvas(blackPanel, 1f, time);
+        blackPanel.DOFade(1, time);
     }
     public void BfadeOut(float time)
     {
-        LeanTween.alphaCanvas(blackPanel, 0f, time);
+        blackPanel.DOFade(0, time);
     }
     public void PfadeIn(float time)
     {
-        LeanTween.alphaCanvas(Ptext, .4f, time);
+        Ptext.DOFade(.4f, time);
     }
     public void PfadeOut(float time)
     {
-        LeanTween.alphaCanvas(Ptext, .15f, time);
+        Ptext.DOFade(.15f, time);
     }
     public void Start()
     {
         PlayerPrefs.SetInt("Music", 0);
         PlayerPrefs.SetInt("Sound", 0);
-        if (PlayerPrefs.GetInt("Music") == 0)
+        if(MusicUI != null)
         {
-            MusicUI.sprite = MusicOff;
+            if (PlayerPrefs.GetInt("Music") == 0)
+            {
+                MusicUI.sprite = MusicOff;
+            }
+            else if (PlayerPrefs.GetInt("Music") == 1)
+            {
+                MusicUI.sprite = MusicOn;
+            }
         }
-        else if (PlayerPrefs.GetInt("Music") == 1)
+        if(SoundUI != null)
         {
-            MusicUI.sprite = MusicOn;
+            if (PlayerPrefs.GetInt("Sound") == 0)
+            {
+                SoundUI.sprite = SoundOff;
+            }
+            else if (PlayerPrefs.GetInt("Sound") == 1)
+            {
+                SoundUI.sprite = SoundOn;
+            }
         }
-        if (PlayerPrefs.GetInt("Sound") == 0)
+
+        if (PausePanel != null)
         {
-            SoundUI.sprite = SoundOff;
+            foreach (RectTransform t in PausePanel.transform)
+            {
+                t.DOScale(Vector3.zero, .01f);
+                t.gameObject.SetActive(false);
+            }
         }
-        else if (PlayerPrefs.GetInt("Sound") == 1)
-        {
-            SoundUI.sprite = SoundOn;
-        }
-        foreach (RectTransform t in PausePanel.transform)
-        {
-            LeanTween.scale(t, new Vector3(0, 0), .01f);
-            t.gameObject.SetActive(false);
-        }
+        
         inside = false;
-        foreach (Transform tt in Basses.transform)
+
+        if (Basses != null)
         {
-            LeanTween.scale(tt.gameObject, new Vector3(0, 0), .01f);
-            tt.gameObject.SetActive(false);
+            foreach (Transform tt in Basses.transform)
+            {
+                tt.DOScale(Vector3.zero, .01f);
+                tt.gameObject.SetActive(false);
+            }
         }
+
+        
         StartCoroutine(wait());
     }
     private void Update()
@@ -77,7 +95,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
                 foreach (RectTransform t in PausePanel.transform)
                 {
-                    LeanTween.scale(t, new Vector3(0, 0), .3f);
+                    t.DOScale(Vector3.zero, .3f);
                 }
                 inside = false;
             }
@@ -86,7 +104,7 @@ public class GameManager : MonoBehaviour
                 foreach (RectTransform t in PausePanel.transform)
                 {
                     t.gameObject.SetActive(true);
-                    LeanTween.scale(t, new Vector3(1, 1), .3f);
+                    t.DOScale(Vector3.one,.3f);
                 }
                 StartCoroutine(WaitT());
             }
@@ -149,7 +167,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         t.gameObject.SetActive(true);
-        LeanTween.scale(t, new Vector3(2, .7f), .2f);
+        t.transform.DOScale(new Vector3(2, .7f), .2f);
         yield return new WaitForSeconds(.2f);
     }
     IEnumerator waitR()

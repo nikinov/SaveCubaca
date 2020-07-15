@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,10 @@ public class GameManager2 : MonoBehaviour
     public CanvasGroup blackPanel;
     public void BfadeIn(float time)
     {
-        LeanTween.alphaCanvas(blackPanel, 1f, time);
+        blackPanel.DOFade(1,time);
     }
     public void BfadeOut(float time)
     {
-        LeanTween.alphaCanvas(blackPanel, 0f, time);
+        blackPanel.DOFade(0, time);
     }
 }

@@ -13,6 +13,10 @@ public class BeatJumper : MonoBehaviour
     [SerializeField] private ParticleSystem landEffect;
     [SerializeField] private TrailRenderer jumpTrail;
 
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Color higlightCOlor;
+    [SerializeField] private Color atentionCOlor;
+
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip lendSound;
     [SerializeField] private AudioSource source;
@@ -107,7 +111,7 @@ public class BeatJumper : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, groundMask);
         if(hit)
-            Debug.Log(hit.collider.gameObject.name + " dst = " + hit.distance);
+
         if (hit && hit.distance<.382f) {
             if (!isLanded)
             {

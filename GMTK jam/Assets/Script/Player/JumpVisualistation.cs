@@ -36,7 +36,7 @@ public class JumpVisualistation : MonoBehaviour
                 }
                 break;
             case AtentionStage.Atention:
-                sp.color = Color.Lerp(atentionColor,defaultColor, atentionTime + jumpTime/jumper.JumpTimer);
+                sp.color = Color.Lerp(defaultColor, atentionColor, (atentionTime + jumpTime) / jumper.JumpTimer);
                 if(jumper.JumpTimer <= jumpTime)
                 {
                     atention = AtentionStage.Jump;

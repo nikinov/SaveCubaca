@@ -4827,7 +4827,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff16fb4a90fe84bec9c8f29698aa0eed, type: 2}
+  - {fileID: 2100000, guid: ca74a6c58de0e43bdba84d21b1f9dec9, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4919,8 +4919,9 @@ GameObject:
   - component: {fileID: 5311984766109733661}
   - component: {fileID: 5311984766109733660}
   - component: {fileID: 5311984766109733650}
+  - component: {fileID: 5202893202675986941}
   - component: {fileID: 815105861}
-  - component: {fileID: 8448962289652988534}
+  - component: {fileID: 1983963525}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5061,19 +5062,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpFrequency: 2
-  jumpForce: 7
+  jumpForce: 7.1
   jumpDecrier: 1.15
   startingTimer: 2
   lit: []
   jumpEffect: {fileID: 4716746951216181578}
   landEffect: {fileID: 7922205129762408372}
   jumpTrail: {fileID: 73186145989941618}
+  sprite: {fileID: 0}
+  higlightCOlor: {r: 0, g: 0, b: 0, a: 0}
+  atentionCOlor: {r: 0, g: 0, b: 0, a: 0}
   jumpSound: {fileID: 8300000, guid: 0545c30141718a642801b0cacf2d30da, type: 3}
   lendSound: {fileID: 8300000, guid: 4ff0b0cfbdc6a69409384be5cdba5741, type: 3}
   source: {fileID: 815105861}
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &5202893202675986941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311984766109733656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3751e4b60f8e7477e8ba84be07606ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 20
+  drag: 0.9
+  gameManager: {fileID: 0}
+  hitSpike: {fileID: 8300000, guid: 661be565851cfdc40851fad65b1b6011, type: 3}
+  source: {fileID: 815105861}
 --- !u!82 &815105861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5170,7 +5191,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8448962289652988534
+--- !u!114 &1983963525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5179,13 +5200,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5311984766109733656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aae90909c9a84cb49179e533ceb1c43, type: 3}
+  m_Script: {fileID: 11500000, guid: 274e0ce5cae4d4941a02f9275fb4dbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
-  hitSpike: {fileID: 8300000, guid: 661be565851cfdc40851fad65b1b6011, type: 3}
-  source: {fileID: 815105861}
-  gameManager: {fileID: 0}
+  sp: {fileID: 5311984766109733663}
+  jumpColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  atentionColor: {r: 0.07058823, g: 0.5946086, b: 1, a: 1}
+  jumper: {fileID: 5311984766109733650}
+  atentionTime: 0.7
+  jumpTime: 0.15
 --- !u!1 &5311984766359465122
 GameObject:
   m_ObjectHideFlags: 0
@@ -10055,7 +10078,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff16fb4a90fe84bec9c8f29698aa0eed, type: 2}
+  - {fileID: 2100000, guid: ca74a6c58de0e43bdba84d21b1f9dec9, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -10150,7 +10173,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff16fb4a90fe84bec9c8f29698aa0eed, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10192,8 +10215,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 0.1745283, g: 0.9924575, b: 1, a: 1}
+      key1: {r: 0.5896226, g: 1, b: 0.86435574, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

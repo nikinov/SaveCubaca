@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float drag;
     public GameManager gameManager;
-    public Vector3 Teleport;
+    private Vector3 Teleport;
 
     [SerializeField] private AudioClip hitSpike;
     [SerializeField] private AudioSource source;
@@ -18,9 +19,9 @@ public class MovePlayer : MonoBehaviour
 
     private void Start()
     {
-        LeanTween.scale(gameObject, new Vector3(0.17f, 0.17f), 1f).setEase(LeanTweenType.easeOutBounce);
-        LeanTween.rotateAround(gameObject, Vector3.forward, -720f, 1f);
-        LeanTween.move(gameObject, gameObject.transform.position + new Vector3(3f, -1f, 0f), 1f);
+        transform.DOScale(new Vector3(0.17f, 0.17f), 1).SetEase(Ease.OutBounce);
+        transform.DORotate(new Vector3(0, 0, -720), 1f);
+        transform.DOMove(gameObject.transform.position + new Vector3(3.5f, -1f, 0f), 1f);
         gameManager?.BfadeOut(.7f);
         moveRb = GetComponent<Rigidbody2D>();
     }
@@ -36,43 +37,45 @@ public class MovePlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            LeanTween.scale(gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
+            transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutBounce);
             StartCoroutine(wait(gameObject,2));
             source.PlayOneShot(hitSpike);
         }
         else if (collision.gameObject.tag == "Start")
         {
-            LeanTween.scale(gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
-            LeanTween.rotateAround(gameObject, Vector3.forward, -360f, .6f);
-            LeanTween.move(gameObject, gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
+            transform.DOScale(Vector3.zero, .6f).SetEase(Ease.OutBounce);
+            transform.DORotate(new Vector3(0, 0, -360), .6f);
+            //Interesting
+            transform.DOMove(gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
             StartCoroutine(wait(gameObject, 1));
         }
         else if (collision.gameObject.tag == "Base")
         {
-            LeanTween.scale(gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
-            LeanTween.rotateAround(gameObject, Vector3.forward, 360f, .6f);
-            LeanTween.move(gameObject, gameObject.transform.position + new Vector3(-2f, 1f, 0f), .6f);
+            transform.DOScale(Vector3.zero, .6f).SetEase(Ease.OutBounce);
+            transform.DORotate(new Vector3(0, 0, 360), .6f);
+            //Interesting
+            transform.DOMove(gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
             StartCoroutine(wait(gameObject, 3, 1));
         }
         else if (collision.gameObject.tag == "Hallway")
         {
-            LeanTween.scale(gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
-            LeanTween.rotateAround(gameObject, Vector3.forward, -360f, .6f);
-            LeanTween.move(gameObject, gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
-            StartCoroutine(wait(gameObject, 3, 2));
+            transform.DOScale(Vector3.zero, .6f).SetEase(Ease.OutBounce);
+            transform.DORotate(new Vector3(0, 0, -360), .6f);
+            //Interesting
+            transform.DOMove(gameObject.transform.position + new Vector3(2f, 1f, 0f), .6f);
         }
         else if (collision.gameObject.tag == "Friendly")
         {
-            LeanTween.scale(collision.gameObject, new Vector3(0f, 0f), .3f).setEase(LeanTweenType.easeOutBounce);
+            transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutBounce);
             StartCoroutine(wait(collision.gameObject, 4, 4, false));
         }
         else if (collision.gameObject.tag == "Spawn")
         {
-            LeanTween.move(gameObject, gameObject.transform.position + new Vector3(1, 0f, 0), .5f);
+            transform.DOMove(gameObject.transform.position + new Vector3(1f, 0f, 0f), .5f);
         }
         else if (collision.gameObject.tag == "Dis")
         {
-            LeanTween.scale(collision.gameObject, new Vector3(0f, 0f), .6f).setEase(LeanTweenType.easeOutBounce);
+            transform.DOScale(Vector3.zero, .6f).SetEase(Ease.OutBounce);
             wait(collision.gameObject);
         }
         else
@@ -98,14 +101,14 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Stay == 3)
         {
-            SceneManager.LoadScene(sceneBuildIndex: scene);
+            SceneManager.LoadScene(scene);
         }
         else if (Stay == 4)
         {
-            LeanTween.scale(gameObject, new Vector3(0f, 0f), 1f).setEase(LeanTweenType.easeOutBounce);
+            transform.DOScale(Vector3.zero, 1f).SetEase(Ease.OutBounce);
             yield return new WaitForSeconds(1);
             transform.position = Teleport;
-            LeanTween.scale(gameObject, new Vector3(.17f, .17f), 1f).setEase(LeanTweenType.easeOutBounce);
+            transform.DOScale(new Vector3(0.17f, 0.17f), 1).SetEase(Ease.OutBounce);
             yield return new WaitForSeconds(1);
         }
         else

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class LogoManager : MonoBehaviour
 {
-    public TextMeshProUGUI madeBy0;
-    public TextMeshProUGUI madeBy1;
-    public TextMeshProUGUI madeBy2;
-    public TextMeshProUGUI madeBy3;
-    public TextMeshProUGUI Mission0;
-    public TextMeshProUGUI Mission1;
-    public TextMeshProUGUI Mission2;
+    public TMP_Text madeBy0;
+    public TMP_Text madeBy1;
+    public TMP_Text madeBy2;
+    public TMP_Text madeBy3;
+    public TMP_Text Mission0;
+    public TMP_Text Mission1;
+    public TMP_Text Mission2;
 
     public CanvasGroup BlackPanel;
 
@@ -25,26 +26,18 @@ public class LogoManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(wait());
+        var fadeAnimation = DOTween.Sequence();
+        fadeAnimation.Append(madeBy0.DOFade(1, 1).SetLoops(2, LoopType.Yoyo));
+        fadeAnimation.Append(madeBy1.DOFade(1, 1).SetLoops(2, LoopType.Yoyo));
+        fadeAnimation.Append(madeBy2.DOFade(1, 1).SetLoops(2, LoopType.Yoyo));
+        fadeAnimation.Append(madeBy3.DOFade(1, 1).SetLoops(2, LoopType.Yoyo));
+        fadeAnimation.OnComplete(() => StartCoroutine(TextApear()));
+        
     }
-    IEnumerator wait()
+    IEnumerator TextApear()
     {
-        LeanTween.alphaCanvas(madeBy0.gameObject.GetComponent<CanvasGroup>(), 1, 1);
-        yield return new WaitForSeconds(1);
-        LeanTween.alphaCanvas(madeBy0.gameObject.GetComponent<CanvasGroup>(), 0, 1);
-        yield return new WaitForSeconds(2);
-        LeanTween.alphaCanvas(madeBy1.gameObject.GetComponent<CanvasGroup>(), 1, 1);
-        yield return new WaitForSeconds(1);
-        LeanTween.alphaCanvas(madeBy1.gameObject.GetComponent<CanvasGroup>(), 0, 1);
-        yield return new WaitForSeconds(2);
-        LeanTween.alphaCanvas(madeBy2.gameObject.GetComponent<CanvasGroup>(), 1, 1);
-        yield return new WaitForSeconds(1);
-        LeanTween.alphaCanvas(madeBy2.gameObject.GetComponent<CanvasGroup>(), 0, 1);
-        yield return new WaitForSeconds(2);
-        LeanTween.alphaCanvas(madeBy3.gameObject.GetComponent<CanvasGroup>(), 1, 1);
-        yield return new WaitForSeconds(1);
-        LeanTween.alphaCanvas(madeBy3.gameObject.GetComponent<CanvasGroup>(), 0, 1);
-        yield return new WaitForSeconds(2);
+       
+
         foreach (char st in miss0)
         {
             misss0 += st;
@@ -66,8 +59,8 @@ public class LogoManager : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         Mission2.text = misss2;
-        LeanTween.alphaCanvas(BlackPanel, 1, 1);
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(sceneBuildIndex: 2);
+
+        BlackPanel.DOFade(1, 1).OnComplete(() => SceneManager.LoadScene(sceneBuildIndex: 2));
+        
     }
 }
